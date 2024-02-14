@@ -4,8 +4,8 @@ import Sensors as sens
 def SensorsProc():
     sens.main()
 
-def NotifProcess():
-    noif.Send_Notif()
+# def NotifProcess():
+#     noif.Send_Notif()
 
 def main():
     process_sensors = multiprocessing.Process(target=SensorsProc)

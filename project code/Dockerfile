@@ -15,7 +15,6 @@ COPY main.py .
 COPY Notification.py .
 COPY requirements.txt .
 RUN pip3 install -r requirements.txt
-RUN sudo apt install -y python3-picamera2
 
 # We need to define the command to launch when we are going to run the image.
 # We use the keyword 'CMD' to do that.
