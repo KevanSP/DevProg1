@@ -9,12 +9,15 @@ FROM python:3.9
 # The first parameter 'Sensors.py' is the name of the file on the host.
 # The second parameter '/' is the path where to put the file on the image.
 # Here we put the file at the image root folder.
+RUN apt update
+RUN apt upgrade -y
+RUN pip install --upgrade pip
+COPY requirements.txt .
+RUN pip3 install -r requirements.txt
 COPY hal ./hal
 COPY Sensors.py .
 COPY main.py .
 COPY Notification.py .
-COPY requirements.txt .
-RUN pip3 install -r requirements.txt
 
 # We need to define the command to launch when we are going to run the image.
 # We use the keyword 'CMD' to do that.
