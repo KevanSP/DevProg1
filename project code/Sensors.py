@@ -26,13 +26,10 @@ def initialize_hardware():
     buzz.turn_off()
 
 
-def temperatureThread(test_mode, temp_humi):
+def temperatureThread():
     global Output, Run_Multithread
     while Run_Multithread:
-        if not test_mode:
-            temperature, humidity = temp.read_temp_humidity()
-        else:
-            temperature, humidity = temp_humi
+        temperature, humidity = temp.read_temp_humidity()
 
         # print(temperature, humidity)
         if temperature > 80 or humidity > 100:
@@ -59,11 +56,8 @@ def lightingThread():
     return Output
 
 
-def motorThread(test_mode, test_count):
+def motorThread():
     global Output, Run_Multithread, count
-    if test_mode:
-        Output = True
-        count = test_count
     while Run_Multithread:
         while Output:
             if count <= 10:
@@ -83,8 +77,8 @@ def motorThread(test_mode, test_count):
                 # print(Output)
     return Output, count
 
-def noifThread(test_mode):
-    if Output or test_mode:
+def noifThread():
+    if Output:
         noif.Send_Notif('Sensor Detection', 'One Of The Sensor Detected Possible Fire.')
 
 
